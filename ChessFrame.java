@@ -18,7 +18,7 @@ public class ChessFrame implements ActionListener {
 
 
     public ChessFrame() {
-        frame = new JFrame("Scacchi Definitive Edition");// commento da github
+        frame = new JFrame("Scacchi Definitive Edition");
         panelgame = new JPanel();
         panelnorth = new JPanel();
         panelwest = new JPanel();
