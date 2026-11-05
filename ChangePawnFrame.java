@@ -1,5 +1,12 @@
-import javax.imageio.ImageIO;
 import javax.swing.*;
+
+import chessgame.Board;
+import chessgame.ImageResources;
+import chessgame.pieces.Bishop;
+import chessgame.pieces.Knight;
+import chessgame.pieces.Queen;
+import chessgame.pieces.Rook;
+
 import java.awt.*;
 import java.awt.event.ActionEvent;
 import java.awt.event.ActionListener;
@@ -9,18 +16,17 @@ public class ChangePawnFrame implements ActionListener {
     JButton[] btn=new JButton[4];
     JLabel[] lbl=new JLabel[4];
 
-    Piece[][] matrix;
+    Board board;
     boolean white;
-    int i,j;
+    int x,y;
 
-
-    public ChangePawnFrame(Piece[][] matrix,boolean white, int i, int j){
+    public ChangePawnFrame(Board board,boolean white, int x, int y){
         int cnt;
 
-        this.matrix=matrix;
+        this.board=board;
         this.white=white;
-        this.i=i;
-        this.j=j;
+        this.x=x;
+        this.y=y;
 
         frame=new JFrame("Cambia il pedone in una nuova pedina");
         for(cnt=0;cnt<4;cnt++){
@@ -37,32 +43,16 @@ public class ChangePawnFrame implements ActionListener {
         }
 
         if(white){
-            try {
-                Image imgR = ImageIO.read(getClass().getResource("Images/Wrook.png"));
-                lbl[0].setIcon(new ImageIcon(imgR));
-                Image imgH = ImageIO.read(getClass().getResource("Images/WHorse.png"));
-                lbl[1].setIcon(new ImageIcon(imgH));
-                Image imgB = ImageIO.read(getClass().getResource("Images/WBishop.png"));
-                lbl[2].setIcon(new ImageIcon(imgB));
-                Image imgQ = ImageIO.read(getClass().getResource("Images/WQueen.png"));
-                lbl[3].setIcon(new ImageIcon(imgQ));
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
+            lbl[0].setIcon(new ImageIcon(ImageResources.load("/images/Wrook.png")));
+            lbl[1].setIcon(new ImageIcon(ImageResources.load("/images/Wknight.png")));
+            lbl[2].setIcon(new ImageIcon(ImageResources.load("/images/Wbishop.png")));
+            lbl[3].setIcon(new ImageIcon(ImageResources.load("/images/Wqueen.png")));
         }
         else{
-            try {
-                Image imgR = ImageIO.read(getClass().getResource("Images/Brook.png"));
-                lbl[0].setIcon(new ImageIcon(imgR));
-                Image imgH = ImageIO.read(getClass().getResource("Images/BHorse.png"));
-                lbl[1].setIcon(new ImageIcon(imgH));
-                Image imgB = ImageIO.read(getClass().getResource("Images/BBishop.png"));
-                lbl[2].setIcon(new ImageIcon(imgB));
-                Image imgQ = ImageIO.read(getClass().getResource("Images/BQueen.png"));
-                lbl[3].setIcon(new ImageIcon(imgQ));
-            } catch (Exception ex) {
-                System.out.println(ex);
-            }
+            lbl[0].setIcon(new ImageIcon(ImageResources.load("/images/Brook.png")));
+            lbl[1].setIcon(new ImageIcon(ImageResources.load("/images/Bknight.png")));
+            lbl[2].setIcon(new ImageIcon(ImageResources.load("/images/Bbishop.png")));
+            lbl[3].setIcon(new ImageIcon(ImageResources.load("/images/Bqueen.png")));
         }
 
 
@@ -86,19 +76,19 @@ public class ChangePawnFrame implements ActionListener {
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btn[0]) {
-            matrix[i][j].setPiece('r');
+            board.setPiece(x, y, new Rook(white));
             frame.dispose();
         }
         if (e.getSource() == btn[1]) {
-            matrix[i][j].setPiece('h');
+            board.setPiece(x, y, new Knight(white));
             frame.dispose();
         }
         if (e.getSource() == btn[2]) {
-            matrix[i][j].setPiece('b');
+            board.setPiece(x, y, new Bishop(white));
             frame.dispose();
         }
         if (e.getSource() == btn[3]) {
-            matrix[i][j].setPiece('q');
+            board.setPiece(x, y, new Queen(white));
             frame.dispose();
         }
     }

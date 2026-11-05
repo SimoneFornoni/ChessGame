@@ -11,14 +11,12 @@ public class InitialFrame implements ActionListener {
     Font fontlbl;
     Font fonttxt;
 
-
     public InitialFrame(){
         frame=new JFrame("Scacchi by Fornoni & Aliaj");
 
         lbltitle=new JLabel("Scacchi Definitive Edition",SwingConstants.CENTER);
         fontlbl=new Font(Font.SERIF,Font.PLAIN, 30);
         lbltitle.setFont(fontlbl);
-        //lbl.setForeground(Color.RED);
 
 
         txtrules=new JTextArea("""
@@ -45,7 +43,7 @@ public class InitialFrame implements ActionListener {
         frame.setLocationRelativeTo(null);
         frame.setVisible(true);
         frame.setResizable(false);
-        frame.setDefaultCloseOperation(frame.EXIT_ON_CLOSE);
+        frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
     }
 
     public static void main(String[] args) {
