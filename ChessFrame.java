@@ -68,18 +68,6 @@ public class ChessFrame {
         }
     }
 
-    private void resetBoardColors() {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if ((j + i) % 2 == 0) {
-                    board.getSquare(i, j).getButton().setBackground(Color.WHITE);
-                } else {
-                    board.getSquare(i, j).getButton().setBackground(Color.BLACK);
-                }
-            }
-        }
-    }
-
     private void displayVictoryMessage(boolean whiteWins) {
         Image image = ImageResources.load("/images/VictoryCup.png")
                 .getScaledInstance(125, 125, Image.SCALE_DEFAULT);
@@ -95,17 +83,17 @@ public class ChessFrame {
 
     public void actionPerformed(ActionEvent e, int x, int y) {
         if (pieceToMoveSelected) {
-            if (board.getSquare(x, y).getButton().getBackground() == Color.ORANGE) {
+            if (board.getSquare(x, y).isValidDestination(board, x, y)) {
                 if (board.getSquare(x, y).isKing()) {
                     board.movePiece(selectedRow, selectedCol, x, y);
-                    resetBoardColors();
+                    board.resetBoardColors();
                     displayVictoryMessage(whiteRound);
                 } else {
                     board.movePiece(selectedRow, selectedCol, x, y);
                     whiteRound = !whiteRound;
                     lblround.setText(whiteRound ? "Turno dei Bianchi" : "Turno dei Neri");
                     pieceToMoveSelected = false;
-                    resetBoardColors();
+                    board.resetBoardColors();
 
                     if (board.getSquare(x, y).isPawn()) {
                         if ((board.getSquare(x, y).isWhite() && x == 0) || (!board.getSquare(x, y).isWhite() && x == 7)) {
@@ -115,7 +103,7 @@ public class ChessFrame {
                 }
             } else if (x != selectedRow || y != selectedCol) {
                 pieceToMoveSelected = false;
-                resetBoardColors();
+                board.resetBoardColors();
             }
         } else {
             board.getSquare(x, y).showMoves(board, x, y, whiteRound);

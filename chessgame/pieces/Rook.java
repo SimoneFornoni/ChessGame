@@ -14,12 +14,12 @@ public class Rook implements IPiece {
     }
     
     @Override 
-    public void showMoves(Board board, int x, int y, boolean turno) {
+    public void showMoves(Board board, int x, int y, boolean round) {
         int cnt;
         boolean brk=true;
 
-        board.getSquare(x, y).getButton().setBackground(Color.PINK);
-        if(isWhite && turno) {           // bianco
+        board.getSquare(x, y).highlightSource();
+        if(isWhite && round) {           // bianco
             cnt = x+1;
             while (cnt < 8 && brk) {   // giú
                 if (!board.getSquare(cnt, y).isEmpty()) {
@@ -27,12 +27,12 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt, y).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt, y).isEmpty()) {
-                    board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt, y).highlightDestination();
                 }
                 cnt++;
             }
@@ -45,12 +45,12 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt, y).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt, y).isEmpty()) {
-                    board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt, y).highlightDestination();
                 }
                 cnt--;
             }
@@ -63,12 +63,12 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x, cnt).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(x, cnt).isEmpty()) {
-                    board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x, cnt).highlightDestination();
                 }
                 cnt++;
             }
@@ -81,18 +81,18 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x, cnt).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(x, cnt).isEmpty()) {
-                    board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x, cnt).highlightDestination();
                 }
                 cnt--;
             }
 
         }
-        else if(!isWhite && !turno ){        // nero
+        else if(!isWhite && !round ){        // nero
             cnt = x+1;
             while (cnt < 8 && brk) {   // giú
                 if (!board.getSquare(cnt, y).isEmpty()) {
@@ -100,12 +100,12 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt, y).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt, y).isEmpty()) {
-                    board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt, y).highlightDestination();
                 }
                 cnt++;
             }
@@ -118,14 +118,14 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt, y).highlightDestination();
                         brk=false;
 
                     }
 
                 }
                 else if(board.getSquare(cnt, y).isEmpty()) {
-                    board.getSquare(cnt, y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt, y).highlightDestination();
                 }
                 cnt--;
             }
@@ -138,12 +138,12 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x, cnt).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(x, cnt).isEmpty()) {
-                    board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x, cnt).highlightDestination();
                 }
                 cnt++;
             }
@@ -156,14 +156,14 @@ public class Rook implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x, cnt).highlightDestination();
                         brk=false;
 
                     }
 
                 }
                 else if(board.getSquare(x, cnt).isEmpty()) {
-                    board.getSquare(x, cnt).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x, cnt).highlightDestination();
                 }
                 cnt--;
             }

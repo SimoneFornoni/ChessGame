@@ -14,12 +14,12 @@ public class Bishop implements IPiece {
     }
 
     @Override 
-    public void showMoves(Board board, int x, int y, boolean turno) {
+    public void showMoves(Board board, int x, int y, boolean round) {
         int cnt1, cnt2;
         boolean brk=true;
 
-        board.getSquare(x, y).getButton().setBackground(Color.PINK);
-        if (isWhite && turno) {              // bianco
+        board.getSquare(x, y).highlightSource();
+        if (isWhite && round) {              // bianco
             cnt1 = x+1;
             cnt2 = y+1;
             while (cnt1 < 8 && cnt2 < 8 && brk) {   // basso destra
@@ -28,12 +28,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1++;
                 cnt2++;
@@ -48,12 +48,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1++;
                 cnt2--;
@@ -68,12 +68,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1--;
                 cnt2++;
@@ -88,18 +88,18 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1--;
                 cnt2--;
             }
         }
-        else if(!isWhite && !turno){         // nero
+        else if(!isWhite && !round){         // nero
 
             cnt1 = x+1;
             cnt2 = y+1;
@@ -109,12 +109,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1++;
                 cnt2++;
@@ -129,12 +129,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1++;
                 cnt2--;
@@ -149,12 +149,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1--;
                 cnt2++;
@@ -169,12 +169,12 @@ public class Bishop implements IPiece {
                         brk=false;
                     }
                     else {
-                        board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(cnt1, cnt2).highlightDestination();
                         brk=false;
                     }
                 }
                 else if(board.getSquare(cnt1, cnt2).isEmpty()) {
-                    board.getSquare(cnt1, cnt2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(cnt1, cnt2).highlightDestination();
                 }
                 cnt1--;
                 cnt2--;

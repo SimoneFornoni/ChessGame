@@ -3,6 +3,7 @@ package chessgame;
 import chessgame.pieces.*;
 
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class Board {
     private Square[][] matrix;
@@ -50,6 +51,18 @@ public class Board {
             IPiece pieceToMove = fromSquare.getPiece().orElse(null);
             toSquare.setPiece(pieceToMove);
             fromSquare.clearPiece();
+        }
+    }
+
+    public void resetBoardColors() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                if ((j + i) % 2 == 0) {
+                    matrix[i][j].setBackgroundColor(Color.WHITE);
+                } else {
+                    matrix[i][j].setBackgroundColor(Color.BLACK);
+                }
+            }
         }
     }
 

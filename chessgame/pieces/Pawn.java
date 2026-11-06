@@ -4,7 +4,6 @@ import chessgame.Board;
 import chessgame.ImageResources;
 import chessgame.IPiece;
 
-import java.awt.Color;
 import java.awt.Image;
 
 public class Pawn implements IPiece {
@@ -15,58 +14,58 @@ public class Pawn implements IPiece {
     }
     
     @Override 
-    public void showMoves(Board board, int x, int y, boolean turno){
-        board.getSquare(x,y).getButton().setBackground(Color.PINK);
+    public void showMoves(Board board, int x, int y, boolean round){
+        board.getSquare(x,y).highlightSource();
 
-        if(isWhite && turno){  // pezzo bianco
+        if(isWhite && round){  // pezzo bianco
             if(x==6){                                    // primo spostamento da 2
                 if(board.getSquare(x-1,y).isEmpty()){
-                    board.getSquare(x-1,y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1,y).highlightDestination();
                     if(board.getSquare(x-2,y).isEmpty())
-                        board.getSquare(x-2,y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x-2,y).highlightDestination();
                 }
             }
             else{
                 if(x>0){     // gestione degli indici al di fuori della scacchiera
                     if(board.getSquare(x-1,y).isEmpty())
-                        board.getSquare(x-1,y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x-1,y).highlightDestination();
                 }
             }
 
             if(x>0 && y>0){      // quando il pedone mangia
                 if(!board.getSquare(x-1,y-1).isWhite() && !board.getSquare(x-1,y-1).isEmpty())
-                    board.getSquare(x-1,y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1,y-1).highlightDestination();
             }
 
             if(x>0 && y<7) {
                 if (!board.getSquare(x-1,y+1).isWhite() && !board.getSquare(x-1,y+1).isEmpty())
-                    board.getSquare(x-1,y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1,y+1).highlightDestination();
             }
         }
-        else if(!isWhite && !turno){    // pezzo nero
+        else if(!isWhite && !round){    // pezzo nero
 
             if(x==1){
                 if(board.getSquare(x+1,y).isEmpty()){
-                    board.getSquare(x+1,y).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1,y).highlightDestination();
                     if(board.getSquare(x+2,y).isEmpty())
-                        board.getSquare(x+2,y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x+2,y).highlightDestination();
                 }
             }
             else{
                 if(x<7){
                     if(board.getSquare(x+1,y).isEmpty())
-                        board.getSquare(x+1,y).getButton().setBackground(Color.ORANGE);
+                        board.getSquare(x+1,y).highlightDestination();
                 }
             }
 
             if(x<7 && y<7){
                 if(board.getSquare(x+1,y+1).isWhite() && !board.getSquare(x+1,y+1).isEmpty())
-                    board.getSquare(x+1,y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1,y+1).highlightDestination();
             }
 
             if(x<7 && y>0){
                 if(board.getSquare(x+1,y-1).isWhite() && !board.getSquare(x+1,y-1).isEmpty())
-                    board.getSquare(x+1,y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1,y-1).highlightDestination();
             }
         }
     }

@@ -14,152 +14,152 @@ public class Knight implements IPiece {
     }
 
     @Override 
-    public void showMoves(Board board, int x, int y, boolean turno){
-        board.getSquare(x, y).getButton().setBackground(Color.PINK);
-        if(isWhite && turno) {           // bianco
+    public void showMoves(Board board, int x, int y, boolean round){
+        board.getSquare(x, y).highlightSource();
+        if(isWhite && round) {           // bianco
 
             if(x>1 && y<7){     //alto destra
                 if(board.getSquare(x-2, y+1).isEmpty()){
-                    board.getSquare(x-2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y+1).highlightDestination();
                 }
                 else if(!board.getSquare(x-2, y+1).isEmpty() && !board.getSquare(x-2, y+1).isWhite()){
-                    board.getSquare(x-2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y+1).highlightDestination();
                 }
             }
 
             if(x>1 && y>0){     //alto sinistra
                 if(board.getSquare(x-2, y-1).isEmpty()){
-                    board.getSquare(x-2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y-1).highlightDestination();
                 }
                 else if(!board.getSquare(x-2, y-1).isEmpty() && !board.getSquare(x-2, y-1).isWhite()){
-                    board.getSquare(x-2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y-1).highlightDestination();
                 }
             }
 
             if(x>0 && y<6){     //destra alto
                 if(board.getSquare(x-1, y+2).isEmpty()){
-                    board.getSquare(x-1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y+2).highlightDestination();
                 }
                 else if(!board.getSquare(x-1, y+2).isEmpty() && !board.getSquare(x-1, y+2).isWhite()){
-                    board.getSquare(x-1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y+2).highlightDestination();
                 }
             }
 
             if(x<7 && y<6){     //destra basso
                 if(board.getSquare(x+1, y+2).isEmpty()){
-                    board.getSquare(x+1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y+2).highlightDestination();
                 }
                 else if(!board.getSquare(x+1, y+2).isEmpty() && !board.getSquare(x+1, y+2).isWhite()){
-                    board.getSquare(x+1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y+2).highlightDestination();
                 }
             }
 
             if(x<6 && y<7){     //basso destra
                 if(board.getSquare(x+2, y+1).isEmpty()){
-                    board.getSquare(x+2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y+1).highlightDestination();
                 }
                 else if(!board.getSquare(x+2, y+1).isEmpty() && !board.getSquare(x+2, y+1).isWhite()){
-                    board.getSquare(x+2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y+1).highlightDestination();
                 }
             }
 
             if(x<6 && y>0){     //basso sinistra
                 if(board.getSquare(x+2, y-1).isEmpty()){
-                    board.getSquare(x+2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y-1).highlightDestination();
                 }
                 else if(!board.getSquare(x+2, y-1).isEmpty() && !board.getSquare(x+2, y-1).isWhite()){
-                    board.getSquare(x+2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y-1).highlightDestination();
                 }
             }
 
             if(x>0 && y>1){     //sinistra alto
                 if(board.getSquare(x-1, y-2).isEmpty()){
-                    board.getSquare(x-1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y-2).highlightDestination();
                 }
                 else if(!board.getSquare(x-1, y-2).isEmpty() && !board.getSquare(x-1, y-2).isWhite()){
-                    board.getSquare(x-1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y-2).highlightDestination();
                 }
             }
 
             if(x<7 && y>1){     //sinistra basso
                 if(board.getSquare(x+1, y-2).isEmpty()){
-                    board.getSquare(x+1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y-2).highlightDestination();
                 }
                 else if(!board.getSquare(x+1, y-2).isEmpty() && !board.getSquare(x+1, y-2).isWhite()){
-                    board.getSquare(x+1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y-2).highlightDestination();
                 }
             }
         }
-        else if(!isWhite && !turno){         // nero
+        else if(!isWhite && !round){         // nero
             if(x>1 && y<7){     //alto destra
                 if(board.getSquare(x-2, y+1).isEmpty()){
-                    board.getSquare(x-2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y+1).highlightDestination();
                 }
                 else if(!board.getSquare(x-2, y+1).isEmpty() && board.getSquare(x-2, y+1).isWhite()){
-                    board.getSquare(x-2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y+1).highlightDestination();
                 }
             }
 
             if(x>1 && y>0){     //alto sinistra
                 if(board.getSquare(x-2, y-1).isEmpty()){
-                    board.getSquare(x-2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y-1).highlightDestination();
                 }
                 else if(!board.getSquare(x-2, y-1).isEmpty() && board.getSquare(x-2, y-1).isWhite()){
-                    board.getSquare(x-2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-2, y-1).highlightDestination();
                 }
             }
 
             if(x>0 && y<6){     //destra alto
                 if(board.getSquare(x-1, y+2).isEmpty()){
-                    board.getSquare(x-1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y+2).highlightDestination();
                 }
                 else if(!board.getSquare(x-1, y+2).isEmpty() && board.getSquare(x-1, y+2).isWhite()){
-                    board.getSquare(x-1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y+2).highlightDestination();
                 }
             }
 
             if(x<7 && y<6){     //destra basso
                 if(board.getSquare(x+1, y+2).isEmpty()){
-                    board.getSquare(x+1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y+2).highlightDestination();
                 }
                 else if(!board.getSquare(x+1, y+2).isEmpty() && board.getSquare(x+1, y+2).isWhite()){
-                    board.getSquare(x+1, y+2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y+2).highlightDestination();
                 }
             }
 
             if(x<6 && y<7){     //basso destra
                 if(board.getSquare(x+2, y+1).isEmpty()){
-                    board.getSquare(x+2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y+1).highlightDestination();
                 }
                 else if(!board.getSquare(x+2, y+1).isEmpty() && board.getSquare(x+2, y+1).isWhite()){
-                    board.getSquare(x+2, y+1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y+1).highlightDestination();
                 }
             }
 
             if(x<6 && y>0){     //basso sinistra
                 if(board.getSquare(x+2, y-1).isEmpty()){
-                    board.getSquare(x+2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y-1).highlightDestination();
                 }
                 else if(!board.getSquare(x+2, y-1).isEmpty() && board.getSquare(x+2, y-1).isWhite()){
-                    board.getSquare(x+2, y-1).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+2, y-1).highlightDestination();
                 }
             }
 
             if(x>0 && y>1){     //sinistra alto
                 if(board.getSquare(x-1, y-2).isEmpty()){
-                    board.getSquare(x-1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y-2).highlightDestination();
                 }
                 else if(!board.getSquare(x-1, y-2).isEmpty() && board.getSquare(x-1, y-2).isWhite()){
-                    board.getSquare(x-1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x-1, y-2).highlightDestination();
                 }
             }
 
             if(x<7 && y>1){     //sinistra basso
                 if(board.getSquare(x+1, y-2).isEmpty()){
-                    board.getSquare(x+1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y-2).highlightDestination();
                 }
                 else if(!board.getSquare(x+1, y-2).isEmpty() && board.getSquare(x+1, y-2).isWhite()){
-                    board.getSquare(x+1, y-2).getButton().setBackground(Color.ORANGE);
+                    board.getSquare(x+1, y-2).highlightDestination();
                 }
             }
         }

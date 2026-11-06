@@ -3,6 +3,7 @@ package chessgame;
 import java.util.Optional;
 import javax.swing.ImageIcon;
 import javax.swing.JButton;
+import java.awt.Color;
 
 public class Square {
     private JButton button;
@@ -39,6 +40,10 @@ public class Square {
         }
     }
 
+    public boolean isValidDestination(Board board, int x, int y) {
+        return button.getBackground() == Color.ORANGE;
+    }
+
     public JButton getButton() {
         return button;
     }
@@ -57,5 +62,17 @@ public class Square {
 
     public boolean isPawn() {
         return piece.isPresent() && piece.get().isPawn();
+    }
+
+    public void setBackgroundColor(Color color) {
+        button.setBackground(color);
+    }
+
+    public void highlightSource() {
+        button.setBackground(Color.PINK);
+    }
+
+    public void highlightDestination() {
+        button.setBackground(Color.ORANGE);
     }
 }
