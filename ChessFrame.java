@@ -4,19 +4,17 @@ import chessgame.ImageResources;
 import javax.swing.*;
 import java.awt.*;
 import java.awt.event.ActionEvent;
-import java.awt.event.ActionListener;
 
-public class ChessFrame implements ActionListener {
+public class ChessFrame {
 
-    JFrame frame;
-    JPanel panelgame, panelnorth, panelwest;
-    JLabel lblround;
-    Board board;
-    char c;
-    public static boolean bool = false;
-    int row, col;
-    int lastrow, lastcol;
-    public static boolean round = true;
+    private JFrame frame;
+    private JPanel panelgame, panelnorth, panelwest;
+    private JLabel lblround;
+    private Board board;
+    private char c;
+    private boolean pieceToMoveSelected = false;
+    private int selectedRow, selectedCol;
+    private boolean whiteRound = true;
 
 
     public ChessFrame() {
@@ -44,14 +42,7 @@ public class ChessFrame implements ActionListener {
         frame.add(lblround, BorderLayout.SOUTH);
         board = new Board();
 
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                JButton button = board.getSquare(i, j).getButton();
-                button.setBackground((i + j) % 2 == 0 ? Color.WHITE : Color.BLACK);
-                button.addActionListener(this);
-                panelgame.add(button);
-            }
-        }
+        setupButtons();
 
         // frame
         frame.setSize(700, 700);
@@ -59,6 +50,22 @@ public class ChessFrame implements ActionListener {
         frame.setVisible(true);
         frame.setResizable(false);
         frame.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
+    }
+
+    private void setupButtons() {
+        for (int i = 0; i < 8; i++) {
+            for (int j = 0; j < 8; j++) {
+                final int row = i;
+                final int col = j;
+
+                JButton button = board.getSquare(i, j).getButton();
+                button.setBackground((i + j) % 2 == 0 ? Color.WHITE : Color.BLACK);
+                button.addActionListener(e -> {
+                    actionPerformed(e, row, col);
+                });
+                panelgame.add(button);
+            }
+        }
     }
 
     private void resetBoardColors() {
@@ -86,62 +93,35 @@ public class ChessFrame implements ActionListener {
             frame.dispose();
     }
 
-    @Override
-    public void actionPerformed(ActionEvent e) {
-        for (int i = 0; i < 8; i++) {
-            for (int j = 0; j < 8; j++) {
-                if (e.getSource() == board.getSquare(i, j).getButton()) {
-                    if (bool) {                             // secondo bottone
-                        if (board.getSquare(i, j).getButton().getBackground() == Color.ORANGE) {
-                            if (board.getSquare(i, j).isKing()) {
-                                board.movePiece(row, col, i, j);
+    public void actionPerformed(ActionEvent e, int x, int y) {
+        if (pieceToMoveSelected) {
+            if (board.getSquare(x, y).getButton().getBackground() == Color.ORANGE) {
+                if (board.getSquare(x, y).isKing()) {
+                    board.movePiece(selectedRow, selectedCol, x, y);
+                    resetBoardColors();
+                    displayVictoryMessage(whiteRound);
+                } else {
+                    board.movePiece(selectedRow, selectedCol, x, y);
+                    whiteRound = !whiteRound;
+                    lblround.setText(whiteRound ? "Turno dei Bianchi" : "Turno dei Neri");
+                    pieceToMoveSelected = false;
+                    resetBoardColors();
 
-                                resetBoardColors();
-                                displayVictoryMessage(round);
-                            }
-
-                            board.movePiece(row, col, i, j);
-
-                            round = !round;
-                            if (round) {
-                                lblround.setText("Turno dei Bianchi");
-                            } else {
-                                lblround.setText("Turno dei Neri");
-                            }
-                            lastrow = i;      // per evitare che si clicchi due volte sullo stesso pezzo
-                            lastcol = j;
-
-                            bool = false;
-                            resetBoardColors();
-
-                            if (board.getSquare(i, j).isWhite()) {
-                                if (board.getSquare(i, j).isPawn() && i == 0) {
-                                    ChangePawnFrame frameCP = new ChangePawnFrame(board, board.getSquare(i, j).isWhite(), i, j);
-                                }
-                            } else {
-                                if (board.getSquare(i, j).isPawn() && i == 7) {
-                                    ChangePawnFrame frameCP = new ChangePawnFrame(board, board.getSquare(i, j).isWhite(), i, j);
-                                }
-                            }
-
-                        } else {
-                            if (i == row && j == col) {
-                                bool = false;
-                                resetBoardColors();
-                            }
-                            if (board.getSquare(row, col).isWhite() == board.getSquare(lastrow, lastcol).isWhite()) {
-                                bool = false;
-                            }
+                    if (board.getSquare(x, y).isPawn()) {
+                        if ((board.getSquare(x, y).isWhite() && x == 0) || (!board.getSquare(x, y).isWhite() && x == 7)) {
+                            new ChangePawnFrame(board, board.getSquare(x, y).isWhite(), x, y);
                         }
                     }
-                    else {
-                        board.getSquare(i, j).showMoves(board, i, j, round);
-                        row = i;
-                        col = j;
-                        bool = true;
-                    }
                 }
+            } else if (x != selectedRow || y != selectedCol) {
+                pieceToMoveSelected = false;
+                resetBoardColors();
             }
+        } else {
+            board.getSquare(x, y).showMoves(board, x, y, whiteRound);
+            selectedRow = x;
+            selectedCol = y;
+            pieceToMoveSelected = true;
         }
     }
 }

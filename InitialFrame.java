@@ -47,13 +47,13 @@ public class InitialFrame implements ActionListener {
     }
 
     public static void main(String[] args) {
-        InitialFrame frame=new InitialFrame();
+        new InitialFrame();
     }
 
     @Override
     public void actionPerformed(ActionEvent e) {
         if (e.getSource() == btnplay) {
-            ChessFrame Chessboard=new ChessFrame();
+            new ChessFrame();
             frame.dispose();
         }
     }
